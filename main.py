@@ -10,7 +10,7 @@ from fake_useragent import UserAgent
 from selenium.webdriver.chrome.service import Service
 
 
-def realistic_scroll(browser, direction, max_offset=300, min_offset=100, max_sleep=0.5, min_sleep=0.1):
+def realistic_scroll(browser, direction, max_offset=350, min_offset=300, max_sleep=0.5, min_sleep=0.1):
     offset = random.randint(min_offset, max_offset) * direction
     browser.execute_script(f"window.scrollBy(0, {offset});")
     sleep(random.uniform(min_sleep, max_sleep))
@@ -49,7 +49,7 @@ try:
         actions.move_to_element(nifty_bank).click().perform()
         sleep(2)
 
-        for i in range(5):
+        for i in range(2):
             realistic_scroll(browser, 1)
 
         view_all = browser.find_element(By.CSS_SELECTOR, '#tab4_gainers_loosers > .link-wrap > a')
@@ -74,6 +74,7 @@ try:
 
         sleep(2)
         actions.reset_actions()
+
 except Exception as e:
     print('error')
 
